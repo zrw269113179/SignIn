@@ -1,0 +1,20 @@
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!--背景颜色-->
+    <solid android:color="@color/hyaline" />
+
+    <!--设置边距-->
+    <padding
+        android:bottom="10dp"
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp" />
+
+    <!--控制边界线颜色和大小-->
+    <stroke
+        android:width="2dp"
+        android:color="@color/background1" />
+
+    <!--控制圆角大小-->
+    <corners android:radius="32dp" />
+
+</shape>

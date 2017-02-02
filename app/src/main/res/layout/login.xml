@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:background="@drawable/app_background">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:text="考勤系统"
+        android:textColor="@color/white"
+        android:layout_marginTop="24sp"
+        android:textSize="48sp"
+        android:gravity="center" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white">
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32sp"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/username"
+                android:textSize="24sp"
+                android:inputType="number"
+                android:textColorHint="@color/background1"
+                android:hint="输入学号"
+                android:textColor="@color/background1"
+                android:layout_marginBottom="8sp"
+                android:paddingLeft="24sp"
+                android:background="@drawable/setting_in_shape" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:id="@+id/keyword"
+                android:inputType="textPassword"
+                android:textColorHint="@color/background1"
+                android:textSize="24sp"
+                android:paddingLeft="24sp"
+                android:textColor="@color/background1"
+                android:background="@drawable/setting_in_shape"
+                android:hint="输入密码" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login"
+        android:text="登录"
+        android:layout_marginTop="24sp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/login_btn"
+        style="?android:attr/borderlessButtonStyle"
+        android:textColor="@color/white"
+        android:imeOptions="actionDone"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:text="注册新用户"
+        android:textColor="@color/background1"
+        android:id="@+id/newUser"
+        android:layout_gravity="right"
+        android:layout_marginRight="24sp"
+        android:layout_marginTop="16sp"
+        android:clickable="true"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
