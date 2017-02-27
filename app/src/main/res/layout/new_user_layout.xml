@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/item_background">
+    android:layout_height="match_parent">
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,7 +56,8 @@
             android:layout_height="wrap_content"
             android:text="确定"
             android:textSize="32sp"
-            android:textColor="@color/item_text_color"
+            android:background="@drawable/login_btn"
+            android:textColor="@color/white"
             android:id="@+id/newUserOk"
             android:layout_margin="8sp"
             />

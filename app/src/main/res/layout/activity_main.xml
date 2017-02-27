@@ -8,49 +8,56 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.administrator.signin.MainActivity"
+    tools:context="com.example.administrator.signin.view.MainActivity"
     android:orientation="vertical">
-    <Button
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center">
+    <Button
+        android:background="@drawable/btn_back"
+        android:layout_height="88sp"
+        android:layout_width="88sp"
         android:text="签到"
-        android:layout_margin="8dp"
         android:id="@+id/arrive"/>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/btn_back"
+        android:layout_height="88sp"
+        android:layout_width="88sp"
         android:text="签退"
-        android:layout_margin="8dp"
+        android:layout_toRightOf="@id/arrive"
         android:id="@+id/exit"/>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/btn_back"
+        android:layout_height="88sp"
+        android:layout_width="88sp"
         android:text="签到记录"
-        android:layout_margin="8dp"
+        android:layout_toRightOf="@id/exit"
         android:id="@+id/record"/>
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@drawable/btn_back"
+        android:layout_height="88sp"
+        android:layout_width="88sp"
         android:text="缺勤记录"
-        android:layout_margin="8dp"
+        android:layout_below="@id/arrive"
         android:id="@+id/not"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:orientation="horizontal">
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="缺勤"
-
-            android:id="@+id/not_arrive"/>
-        <EditText
-            android:layout_height="wrap_content"
-            android:hint="请输入缺勤原因"
-            android:layout_width="fill_parent"
-            android:id="@+id/title"/>
-    </LinearLayout>
-
-
+            android:background="@drawable/btn_back"
+            android:layout_height="88sp"
+            android:layout_width="88sp"
+            android:text="课程设置"
+            android:layout_below="@id/arrive"
+            android:layout_toRightOf="@id/not"
+            android:id="@+id/setCourse"/>
+        <Button
+            android:background="@drawable/btn_back"
+            android:layout_height="88sp"
+            android:layout_width="88sp"
+            android:layout_below="@id/arrive"
+            android:layout_toRightOf="@id/setCourse"
+            android:text="更改密码"
+            android:id="@+id/set_user"
+            />
+    </RelativeLayout>
 </LinearLayout>
