@@ -27,7 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText keyword;
     private Button login;
     private TextView newuser;
-    public static String APPID ="ab82c2ef0f28212838c8f9644bfa2912";
+    public static String APPID ="";//放入自己申请的bmob后端云key
     private User bu = new User();
     private String user;
     private String pass;
