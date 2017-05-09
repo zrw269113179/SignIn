@@ -21,9 +21,14 @@
 <br>该界面用于更改密码。找回密码，手机验证等功能可以根据bmob后端云文档自行添加。
 ## 代码使用
 <br>使用代码前请先申请bmob账号，新建一个应用后在云数据库中添加NotArrive、Course、GeoPoint、Record、StudentCourse这几张表，然后在设置中复制
-Application ID，将复制的id粘帖到代码LoginActivity类的APPID中即可。注：教师端，学生端使用同一个bmob应用，因此学生端代码请同样使用该Application ID。
+Application ID，将复制的id粘帖到代码LoginActivity类的APPID中即可。注：教师端，学生端使用同一个bmob应用，因此学生端代码请同样使用该Application ID。并在百度地图api的定位sdk上申请开发者key。
 ```Java
     public static String APPID ="";//放入自己申请的bmob后端云key
+```
+```xml
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="" />
 ```
 ## 后续更新
 <br>添加院系设置，识别手机码使得一台手机一节课只能签到一个帐号。
