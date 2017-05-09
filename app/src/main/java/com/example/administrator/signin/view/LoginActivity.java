@@ -38,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         this.login = (Button) findViewById(R.id.login);
         this.keyword = (EditText) findViewById(R.id.keyword);
         this.username = (EditText) findViewById(R.id.username);
-        this.newuser = (TextView) findViewById(R.id.newUser);
+      //  this.newuser = (TextView) findViewById(R.id.newUser);
         //提供以下两种方式进行初始化操作：
         //第一：设置BmobConfig，允许设置请求超时时间、文件分片上传时每片的大小、文件的过期时间(单位为秒)
         BmobConfig config =new BmobConfig.Builder(this)
@@ -54,12 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         Bmob.initialize(config);
         //第二：默认初始化
         Bmob.initialize(this,APPID);
-        newuser.setOnClickListener(new View.OnClickListener() {
+      /*  newuser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                startActivity(new Intent(LoginActivity.this,NewUser.class));
             }
-        });
+        });*/
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

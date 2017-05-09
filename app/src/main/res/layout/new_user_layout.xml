@@ -50,7 +50,6 @@
         android:inputType="textPassword"
         android:padding="16sp"
         android:textSize="24dp"/>
-
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
@@ -10,54 +10,119 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.administrator.signin.view.MainActivity"
     android:orientation="vertical">
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center">
+    <TableRow android:layout_weight="1">
+        <RelativeLayout
+            android:background="@drawable/btn_back"
+            android:layout_weight="1">
     <Button
-        android:background="@drawable/btn_back"
-        android:layout_height="88sp"
-        android:layout_width="88sp"
+        android:gravity="bottom|center"
+        android:paddingBottom="24dp"
+        android:background="@color/hyaline"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:text="签到"
         android:id="@+id/arrive"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="40dp"
+                android:src="@drawable/ic_sign_in"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="@drawable/btn_back"
+            android:layout_weight="1">
     <Button
-        android:background="@drawable/btn_back"
-        android:layout_height="88sp"
-        android:layout_width="88sp"
+        android:gravity="bottom|center"
+        android:paddingBottom="24dp"
+        android:background="@color/hyaline"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:text="签退"
-        android:layout_toRightOf="@id/arrive"
         android:id="@+id/exit"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="40dp"
+                android:src="@drawable/ic_sign_out"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </TableRow>
+    <TableRow android:layout_weight="1">
+        <RelativeLayout
+            android:background="@drawable/btn_back"
+            android:layout_weight="1">
     <Button
-        android:background="@drawable/btn_back"
-        android:layout_height="88sp"
-        android:layout_width="88sp"
+        android:gravity="bottom|center"
+        android:paddingBottom="24dp"
+        android:background="@color/hyaline"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:text="签到记录"
-        android:layout_toRightOf="@id/exit"
         android:id="@+id/record"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="40dp"
+                android:src="@drawable/ic_sign_in_record"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:background="@drawable/btn_back"
+            android:layout_weight="1">
     <Button
-        android:background="@drawable/btn_back"
-        android:layout_height="88sp"
-        android:layout_width="88sp"
+        android:gravity="bottom|center"
+        android:paddingBottom="24dp"
+        android:background="@color/hyaline"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
         android:text="缺勤记录"
-        android:layout_below="@id/arrive"
         android:id="@+id/not"/>
-
-        <Button
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="40dp"
+                android:src="@drawable/ic_not_record"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </TableRow>
+    <TableRow android:layout_weight="1">
+        <RelativeLayout
             android:background="@drawable/btn_back"
-            android:layout_height="88sp"
-            android:layout_width="88sp"
+            android:layout_weight="1">
+        <Button
+            android:gravity="bottom|center"
+            android:paddingBottom="24dp"
+            android:background="@color/hyaline"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             android:text="课程设置"
-            android:layout_below="@id/arrive"
-            android:layout_toRightOf="@id/not"
             android:id="@+id/setCourse"/>
-        <Button
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="40dp"
+                android:src="@drawable/ic_course_set"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+        <RelativeLayout
             android:background="@drawable/btn_back"
-            android:layout_height="88sp"
-            android:layout_width="88sp"
-            android:layout_below="@id/arrive"
-            android:layout_toRightOf="@id/setCourse"
+            android:layout_weight="1">
+        <Button
+            android:gravity="bottom|center"
+            android:paddingBottom="24dp"
+            android:background="@color/hyaline"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             android:text="更改密码"
             android:id="@+id/set_user"
             />
-    </RelativeLayout>
-</LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="40dp"
+                android:src="@drawable/ic_password_set"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </TableRow>
+</TableLayout>

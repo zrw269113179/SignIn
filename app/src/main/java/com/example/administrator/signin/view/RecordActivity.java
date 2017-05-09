@@ -20,6 +20,7 @@ import cn.bmob.v3.listener.FindListener;
 
 public class RecordActivity extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +30,7 @@ public class RecordActivity extends AppCompatActivity {
         query.addWhereEqualTo("ID",Integer.valueOf(user.getUsername()));
 //返回50条数据，如果不加上这条语句，默认返回10条数据
         query.setLimit(50);
+
 //执行查询方法
         query.findObjects(this, new FindListener<Record>() {
             @Override

@@ -63,17 +63,6 @@
         android:imeOptions="actionDone"
         android:textSize="32sp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:text="注册新用户"
-        android:textColor="@color/background1"
-        android:id="@+id/newUser"
-        android:layout_gravity="right"
-        android:layout_marginRight="24sp"
-        android:layout_marginTop="16sp"
-        android:clickable="true"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

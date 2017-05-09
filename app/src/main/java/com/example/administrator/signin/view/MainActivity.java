@@ -1,10 +1,12 @@
 package com.example.administrator.signin.view;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.TelephonyManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,7 @@ import com.baidu.location.LocationClientOption;
 import com.example.administrator.signin.Cal;
 import com.example.administrator.signin.R;
 import com.example.administrator.signin.modul.GeoPoint;
+import com.example.administrator.signin.modul.NotArrive;
 import com.example.administrator.signin.modul.Record;
 import com.example.administrator.signin.modul.StudentCourse;
 import com.example.administrator.signin.modul.User;
@@ -27,6 +30,7 @@ import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.CountListener;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
@@ -44,12 +48,16 @@ public class MainActivity extends AppCompatActivity {
     private double Longitude;
     private double Latitude2;
     private double Longitude2;
+
+    private int notCount;
     private Long time;
     private Button setCourse;
     private String cId;
     public static User user;
     private Button setuser;
     private android.widget.LinearLayout activitymain;
+    private TelephonyManager telephonemanager;
+    private String IMSI;
     private void initLocation() {
         LocationClientOption option = new LocationClientOption();
         option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy
@@ -67,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         option.setEnableSimulateGps(false);//可选，默认false，设置是否需要过滤GPS仿真结果，默认需要
         mLocationClient.setLocOption(option);
     }
+    @SuppressLint("HardwareIds")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,6 +92,10 @@ public class MainActivity extends AppCompatActivity {
         initLocation();
         mLocationClient.start();
         user = BmobUser.getCurrentUser(MainActivity.this,User.class);
+        telephonemanager=(TelephonyManager)this
+                .getSystemService(TELEPHONY_SERVICE);
+        IMSI=telephonemanager.getSubscriberId();
+
         setCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,35 +213,72 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,NotArriveActivity.class));
             }
         });
+        notCount = getSharedPreferences("data",MODE_PRIVATE).getInt("notCount",0);
+        BmobQuery<NotArrive> query = new BmobQuery<NotArrive>();
+        query.addWhereEqualTo("Id",Integer.valueOf(user.getUsername()));
+        query.count(MainActivity.this, NotArrive.class, new CountListener() {
+            @Override
+            public void onSuccess(int i) {
+                if (i > notCount){
+                    Toast.makeText(MainActivity.this, "您新增了一次缺勤，缺勤一次扣5分，缺勤六次无学分", Toast.LENGTH_LONG).show();
+                }
+                getSharedPreferences("data",MODE_PRIVATE).edit().putInt("notCount",i).apply();
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+
+            }
+        });
     }
     private void signOn(){
-        BmobQuery<Record> query = new BmobQuery<Record>();
-        query.addWhereGreaterThanOrEqualTo("in_time", time);
-        query.addWhereEqualTo("name", user.getName());
-        query.findObjects(MainActivity.this, new FindListener<Record>() {
+        BmobQuery<Record> recordBmobQuery = new BmobQuery<>();
+        recordBmobQuery.addWhereEqualTo("IMSI",IMSI);
+        recordBmobQuery.addWhereEqualTo("cId",cId);
+        recordBmobQuery.addWhereGreaterThanOrEqualTo("in_time", time);
+        recordBmobQuery.findObjects(MainActivity.this, new FindListener<Record>() {
             @Override
             public void onSuccess(List<Record> list) {
-                if (list.isEmpty()) {
-                    final Record record = new Record();
-                    record.setName(user.getName());
-                    record.setID(Integer.valueOf(user.getUsername()));
-                    record.setIn_time(System.currentTimeMillis());
-                    record.setOut_time(0L);
-                    record.setcId(cId);
-                    record.save(MainActivity.this, new SaveListener() {
+                if (!list.isEmpty()){
+                    Toast.makeText(MainActivity.this, "该手机已经签过到", Toast.LENGTH_SHORT).show();
+                }else{
+                    BmobQuery<Record> query = new BmobQuery<Record>();
+                    query.addWhereGreaterThanOrEqualTo("in_time", time);
+                    query.addWhereEqualTo("name", user.getName());
+                    query.addWhereEqualTo("cId",cId);
+                    query.findObjects(MainActivity.this, new FindListener<Record>() {
                         @Override
-                        public void onSuccess() {
-                            Toast.makeText(MainActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
-                            getSharedPreferences("data", MODE_PRIVATE).edit().putString("Object", record.getObjectId()).apply();
+                        public void onSuccess(List<Record> list) {
+                            if (list.isEmpty()) {
+                                final Record record = new Record();
+                                record.setName(user.getName());
+                                record.setID(Integer.valueOf(user.getUsername()));
+                                record.setIn_time(System.currentTimeMillis());
+                                record.setOut_time(0L);
+                                record.setcId(cId);
+                                record.setIMSI(IMSI);
+                                record.save(MainActivity.this, new SaveListener() {
+                                    @Override
+                                    public void onSuccess() {
+                                        Toast.makeText(MainActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
+                                        getSharedPreferences("data", MODE_PRIVATE).edit().putString("Object", record.getObjectId()).apply();
+                                    }
+
+                                    @Override
+                                    public void onFailure(int i, String s) {
+                                        Toast.makeText(MainActivity.this, "签到失败", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            } else {
+                                Toast.makeText(MainActivity.this, "已签到!请不要重复签到", Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                         @Override
-                        public void onFailure(int i, String s) {
-                            Toast.makeText(MainActivity.this, "签到失败", Toast.LENGTH_SHORT).show();
+                        public void onError(int i, String s) {
+
                         }
                     });
-                } else {
-                    Toast.makeText(MainActivity.this, "已签到!请不要重复签到", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -237,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
     }
     public class MyLocationListener implements BDLocationListener {
 

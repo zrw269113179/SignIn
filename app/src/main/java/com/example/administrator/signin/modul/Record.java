@@ -12,6 +12,16 @@ public class Record extends BmobObject {
     private Long in_time;
     private Long out_time;
 
+    public String getIMSI() {
+        return IMSI;
+    }
+
+    public void setIMSI(String IMSI) {
+        this.IMSI = IMSI;
+    }
+
+    private String IMSI;
+
     public String getcId() {
         return cId;
     }

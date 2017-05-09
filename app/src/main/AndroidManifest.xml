@@ -31,7 +31,7 @@
 
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="wjifcBGdAtzFRFE9Z8GFpM1TlClzOU9i" />
+            android:value="" />
 
         <activity
             android:name=".view.LoginActivity"
