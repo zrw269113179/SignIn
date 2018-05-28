@@ -34,6 +34,3 @@ Application ID，将复制的id粘帖到代码LoginActivity类的APPID中即可�
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="" />
 ```
-## 后续更新
-<br>添加院系设置，识别手机码使得一台手机一节课只能签到一个帐号。
-<br>如有疑问或建议请联系zrw269113179@126.com
